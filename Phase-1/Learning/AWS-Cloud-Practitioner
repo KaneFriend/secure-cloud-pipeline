@@ -1,0 +1,47 @@
+# AWS Certified Cloud practitioner (CLF-c02) - Domain 1 review
+
+## Lesson 1
+
+### Domain 1: Cloud concepts
+
+     1.1 - Define the benefits of the AWS Cloud 
+    1.2 - Identify the design principles of the AWS Cloud 
+    1.3 - Understand the benefits and strategies for migration to the AWS Cloud 
+    1.4 - Understand concepts of cloud economics. 
+
+### Defining the benefits of the AWS Cloud 
+
+#### what is cloud computing in terms of AWS?
+
+    1 - On-demand Self-service - which is the ability to provision compute capabilities, on demand when that service is needed. Cloud computing also has to provision resources without any human interaction and or intervention, to make it an On-demand self service. This can be done via the console, the command line & also through application programming interfaces. 
+
+    2 - Access to the network - AWS gives us the ability to build, using the aws management console, Command line, http, https, vpn & more.
+
+    3 - Resource pooling - what is resource pooling? aws provides pooled resouces to serve multiple aws customers. AWS has thousands of servers, databases & morew, that we can on-demand provision & build in our own environment.
+
+    4 - elasticity - Elasticity is the ability to scale with demand. As your demand increases, elasticity can scale up your resources, when your demand decreases, elasticity can scale it down to meet your businesses needs.
+
+    5 - Resource usage monitored and billed - with AWS, you are no longer pre-provisioning and or procuring your storage, your compute etc. you no longer have to estimate your demands, because AWS they have services that are monitored for usage & then billed, but aws scales your resources to meet your demand, instead of being over or under provisioned. The biggest cost benefit is that you only pay for what you use within AWS.
+        
+        ( NOTE ** this is kinda weird to hear, as I've experienced resources being over and underprovisioned on EC2s WITHIN AWS.... guess they werent elastic EC2 instances then? Brain note **)
+    
+#### High Availability, Fault tolerence & disaster recovery. 
+
+        A) Designing for high availability means desigining for **Minimal Downtime**. - if as system component fails, it can be replaced or fixed as quickly as possible. it maximizes a systems online time. High Availability does **not** mean zero downtime and or zero outages. What high availability does, is respond when their is a failure, to fix a failure as quickly as possible to bring said systems back online, as quickly as possible. 
+
+        An example of High Availablity, is running two servers for an application, within the same security group, where one is a failover for the other server (one running in active mode, the other in standby mode) incase one fails. There could be downtime due to this, as employees / customers *could* have to log back in to the application. 
+
+        The goal of high availability is to reduce outages, staying operational, staying fast, with automatic recovery, but there is usually downtime, even if its very brief. 
+
+        B) Designing for Fault Tolerance means desigining for **Zero Downtime**. - Fault tolerance is the ability of a system to keep operating in the event of a failure. For example, one or more component of a system fails, but the system is able to continue on with those components failing. Fault tolerant designs are more expensive (usually) than high availability designs. An example of this is having two active instances, both serving the same application. This is so that if one server goes down, the other server is already active & can continue to keep serving the application with ZERO downtime.
+
+
+        C) Designing for Disaster Recovery means Desiging for **Systems to Operate Through a Disaster**. - Disaster recover is all about what we need to plan for, so we know what to do in the event of a disaster. Having a disaster recovery plan is crucial, because the worst time to recover from a disaster is in the middle of that disaster. Disaster recovery needs pre-planning & steps to complete the disaster recovery process, so when it occurs, we can recover as quickly as possible. 
+
+#### scaling 
+    A) Vertical scaling  - vertical scaling, example: a t2.micro instance that cannot keep up with the demand would typically crash and or become unresponsive. Vertical scaling allows for resizing your instance to a larger size. an example is  a t2.micro vertically scaling to a t2.medium & so forth. a common issue with vertical scaling is when an instance needs to be resized, it will need to be rebooted.  To tie in cost optimisation, when you vertically scale larger or, a larger instance size, you will also see an increase in cost. a benefit to vertically scaling is that there is usually no application modifications needed & it usually works for all apps. 
+
+    B) horizonal scaling  -  it was designed to fix some issues with vertical scaling, instead of increasing the size of your instance, it adds more instances of the same size, to handle the additional load. Now you have one copy of each instance that has been scailed, usually paired with a Load Balancer to distribute the load across your instances. you have to consider sessions. With your application, you do not want to interrupt customer sessions. Therefore, its recommended to use **Sticky Sessions** to help the ALB (Application Loadbalancer) keep the customer or user with a specific instance for a duration. It generates a cookie for your backend instance to store the session state. Without Sticky Sessions, no session state is stored & all requests are distributed across all instances. The cost optimisation with horizontal scaling is that its usually cheaper than vertical scaling, as you are using smaller, cheaper instance sizes. 
+
+#### Elasticity 
+    A) what is Elasticity? Elasticity is using automation, along with horizontal scaling to match capacity and supply with the demand. Demand is rarely linear, therefore elasticity allows for the increase and decrease in resources, to meet that ever-changing demand. AWS provides launch configurations and autoscaling to match that capacity to meet that demand. 
